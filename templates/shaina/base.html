@@ -1,0 +1,98 @@
+{% load static %}
+{% load i18n %}
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{% block title %}{% endblock %}</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!--  CSS -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+  {% get_current_language as LANGUAGE_CODE %}
+  <!-- Current language: {{ LANGUAGE_CODE }} -->
+  {% if LANGUAGE_CODE == 'en' %}
+  <link rel="stylesheet" href="{% static 'css/styleLtr.css' %}">
+  {% else %}
+  <link rel="stylesheet" href="{% static 'css/styleRtl.css' %}">
+  {% endif %}
+
+
+</head>
+<body class="bg-faded">
+  <div class="h-100">
+
+    <div class="sideMenu h-100 ">
+      <div class="d-lg-flex justify-content-center" id="menuIcon">
+      <div id="nav-icon1" class="m-3">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      </div>
+      <div class="d-flex justify-content-center">
+      <div id="menuItems">
+        <nav class="nav flex-column mt-5">
+  <a class="nav-link text-capitalize font-weight-bold" href="#">{% trans 'main page' %}</a>
+  <a class="nav-link text-capitalize font-weight-bold" href="#">{% trans 'about us' %}</a>
+  <a class="nav-link text-capitalize font-weight-bold" href="#">{% trans 'contact us' %}</a>
+  <a class="nav-link text-capitalize font-weight-bold" href="#">{% trans 'Log in' %}</a>
+</nav>
+
+</div>
+      </div>
+
+      <div class="sideMenuFooter">
+        <div class="d-flex justify-content-center">
+      <form class="p-5 d-flex justify-content-center  align-self-end" action="{% url 'set_language' %}" method="post">{% csrf_token %}
+        <input name="next" type="hidden" value="{{ redirect_to }}">
+
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% get_language_info_list for LANGUAGES as languages %}
+        {% for language in languages %}
+        {% if language.code != LANGUAGE_CODE %}
+        <input name="language" type="hidden" value="{{ language.code }}">
+        <input class="btn btn-info" type="submit" value="{{ language.code }}">
+        {% endif %}
+
+        {% endfor %}
+      </form>
+    </div>
+    </div>
+</div>
+    <div style="height:2500px">
+
+
+
+      {% block content %}
+      {% endblock %}
+
+    </div>
+
+  </div>
+
+  <!-- jQuery first, then Tether, then Bootstrap JS. -->
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+
+  <!-- jQuery v2.1.3 -->
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+  <!--  javascript -->
+  <script src="{% static 'javascript/js.js' %}"></script>
+
+</body>
+
+
+</html>

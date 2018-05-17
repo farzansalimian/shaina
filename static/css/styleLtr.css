@@ -1,0 +1,44 @@
+@font-face {
+  font-family: 'KTF-Roadstar';
+  src: url('../fonts/KTF-Roadstar.ttf')  format("truetype"),
+       local('abc');
+}
+/* sideMenu */
+@media (min-width: 991px)
+{
+  .sideMenu{
+    background: rgba(204, 204, 204, 0.8);
+    height: 100%;
+    width: 130px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+  }
+}
+@media (max-width: 991px)
+{
+  .sideMenu{
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    background-color: #E2E4E8;
+  }
+}
+
+
+#nav-icon1.open span:nth-child(2) {
+  opacity: 0;
+  left: -60px;
+}
+#menuItems a{
+  font-family: 'KTF-Roadstar';
+  font-weight: bold;
+  font-size: 2.5em;
+}
+#menuItems a:hover{
+  color: red;
+}
