@@ -1,15 +1,17 @@
 @font-face {
   font-family: 'KTF-Roadstar';
   src: url('../fonts/KTF-Roadstar.ttf')  format("truetype"),
-       local('abc');
+  local('abc');
 }
-/* sideMenu */
+/* side menu  */
+
+/* big screen  */
 @media (min-width: 991px)
 {
   .sideMenu{
-    background: rgba(204, 204, 204, 0.8);
+    background: rgba(204, 204, 204, 0.5);
     height: 100%;
-    width: 130px;
+    width: 100px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -17,6 +19,7 @@
     overflow-x: hidden;
   }
 }
+/* small screen  */
 @media (max-width: 991px)
 {
   .sideMenu{
@@ -25,7 +28,7 @@
     top: 0;
     left: 0;
     overflow-x: hidden;
-    background-color: #E2E4E8;
+    background: rgba(204, 204, 204, 0.5);
   }
 }
 
@@ -42,3 +45,4 @@
 #menuItems a:hover{
   color: red;
 }
+/* end side menu  */
